@@ -3,7 +3,8 @@ package main
 import "fmt"
 
 type Vertex struct {
-	Lat, Long float64
+	Lat  float64
+	Long float64
 }
 
 var m map[string]Vertex

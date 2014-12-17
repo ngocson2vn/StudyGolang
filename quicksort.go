@@ -24,7 +24,11 @@ func arrange(a []int, left int, right int, p int, pivot int) int {
 }
 
 func partition(a []int, left int, right int) int {
+
+	// pick up pivot value
 	pivot := a[right]
+
+	// initialize pivot index
 	var p = left - 1
 
 	// 1. scan the array from left to right - 1
@@ -54,13 +58,11 @@ func partition(a []int, left int, right int) int {
 }
 
 func quicksort(a []int, left int, right int) {
-	if left >= right {
-		return
+	if left < right {
+		var p = partition(a, left, right)
+		quicksort(a, left, p-1)
+		quicksort(a, p+1, right)
 	}
-
-	var p = partition(a, left, right)
-	quicksort(a, left, p-1)
-	quicksort(a, p+1, right)
 }
 
 func main() {
