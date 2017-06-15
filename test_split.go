@@ -14,6 +14,10 @@ func ExecShoryukenByTask(cluster string) {
 	}
 
 	for _, cmd := range strings.Split(command, ", ") {
+		if strings.Contains(cmd, "step") {
+			label = fmt.Sprintf("%s_%s_shoryuken", os.Getenv("ECS_TASK_NAME"), "sub")
+		}
+
 		ExecuteBatchTask(cmd, label, cluster, 1, 256)
 		fmt.Println()
 	}
