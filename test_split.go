@@ -13,8 +13,8 @@ func ExecShoryukenByTask(cluster string) {
 		return
 	}
 
-	for _, cmd := range strings.Split(command, ", ") {
-		if strings.Contains(cmd, "step") {
+	for i, cmd := range strings.Split(command, ", ") {
+		if i == 1 {
 			label = fmt.Sprintf("%s_%s_shoryuken", os.Getenv("ECS_TASK_NAME"), "sub")
 		}
 
@@ -29,7 +29,8 @@ func ExecuteBatchTask(command string, label string, cluster string, num int64, m
 }
 
 func main() {
-	os.Setenv("SHORYUKEN_COMMAND", "bundle exec shoryuken -r /home/ubuntu/walking_events/lib/default_sqs_worker.rb, bundle exec shoryuken -r /home/ubuntu/walking_events/lib/step_sqs_worker.rb")
+	//os.Setenv("SHORYUKEN_COMMAND", "bundle exec shoryuken -r /home/ubuntu/walking_events/lib/default_sqs_worker.rb, bundle exec shoryuken -r /home/ubuntu/walking_events/lib/step_sqs_worker.rb")
+	os.Setenv("SHORYUKEN_COMMAND", "bundle exec shoryuken -r /home/ubuntu/walking_events/lib/default_sqs_worker.rb, bundle exec shoryuken -r /home/ubuntu/walking_events/lib/abc_sqs_worker.rb")
 	os.Setenv("ECS_TASK_NAME", "WalkingEvents")
 	cluster := "ProductionTask"
 	ExecShoryukenByTask(cluster)
