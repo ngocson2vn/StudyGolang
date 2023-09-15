@@ -14,6 +14,10 @@ func main() {
 
 	numbers = append(numbers, 2, 3, 4)
 	printSlice(numbers)
+
+	var PSMs []string
+	PSMs = nil
+	fmt.Println(PSMs, len(PSMs))
 }
 
 func printSlice(x []int) {
